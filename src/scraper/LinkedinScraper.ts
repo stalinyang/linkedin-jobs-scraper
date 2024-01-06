@@ -90,7 +90,7 @@ class LinkedinScraper extends Scraper {
      * @returns {string}
      * @private
      */
-    private _buildSearchUrl = (query: string, location: string, options: IQueryOptions): string => {
+    private _buildSearchUrl = (query: string, location: string, geoID: string, options: IQueryOptions): string => {
         const url = new URL(urls.jobsSearch);
 
         if (query && query.length) {
@@ -99,6 +99,10 @@ class LinkedinScraper extends Scraper {
 
         if (location && location.length) {
             url.searchParams.append("location", location);
+        }
+
+        if (geoID && geoID.length) {
+            url.searchParams.append("geoID", geoID);
         }
 
         if (options && options.filters) {
