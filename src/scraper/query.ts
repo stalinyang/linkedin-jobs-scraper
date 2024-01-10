@@ -18,6 +18,7 @@ export interface IQueryOptions {
     pageOffset?: number;
     limit?: number;
     filters?: {
+        geoId?: string;    
         companyJobsUrl?: string;
         relevance?: string;
         time?: string;
