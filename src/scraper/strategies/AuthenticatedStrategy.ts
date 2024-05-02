@@ -421,13 +421,15 @@ export class AuthenticatedStrategy extends RunStrategy {
 
             let jobIndex = 0;
 
+            let noResults = await page.evaluate(() => document.querySelector('.jobs-search-no-results-banner') !== null);
+
             // Get number of all job links in the page
             let jobsTot = await page.evaluate(
                 (selector) => document.querySelectorAll(selector).length,
                 selectors.jobs
             );
 
-            if (jobsTot === 0) {
+            if (jobsTot === 0 || noResults) {
                 logger.info(tag, `No jobs found, skip`);
                 break;
             }
